@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>E-SAVE</title>
+      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.css" />
+	  <style>
+	  #page
+	  {
+	  background: #fff;
+	  
+	  }
+	  
+	  #con
+	  {
+	  
+width: 97%;
+padding: 20px;
+float:left;
+padding-top: 20px;
+margin-left: auto;
+margin-right: auto;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+  
+	  
+	  }
+	  #rt
+	  {
+	  width:30%;
+	  float:left;
+	  }
+	  #graph
+	  {
+	  padding:20px;
+	  height:300px;
+	  
+	  
+	  }
+	  </style>
+      <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+      <script src="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.js"></script>
+    <script>
+       
+      function onSuccess(data, status)
+        {
+            data = $.trim(data);
+$("#notification1").text(data);
+$("#notification").popup("open");
+            
+
+        }
+        function onSucess(data, status)
+        {
+            data = $.trim(data);
+            
+            var sta=data;
+            
+            
+            if(sta=="on")
+            {$('#flip-0').val("on");
+             
+}            
+else{
+            $('#flip-0').val("off");
+     }       
+try {
+         $('#flip-0').slider("refresh");
+          
+     }
+     catch (err) {
+         console.log ("Error occurred refreshing slider (probabily first time!)");
+     }
+
+        }
+
+        function onError(data, status)
+        {
+            // handle an error
+        }        
+  
+       $(document).ready(function() {
+            var form = $("#callAjaxForm").serialize();
+            $.ajax({
+                    type: "POST",
+                    url: "servicestatus.php",
+                    cache: false,
+                    data: form,
+                    success: onSucess,
+                    error: onError
+                });
+   
+            $("#flip-0").change(function() {
+                var state=$("#flip-0").val();
+		     var formData = $("#callAjaxForm").serialize();
+  
+                $.ajax({
+                    type: "POST",
+                    url: "service.php",
+                    cache: false,
+                    data: formData,
+                    success: onSuccess,
+                    error: onError
+                });
+  
+                return false;
+            });
+			});
+			
+	  </script>
+  
+		
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- This meta tag is required, else Mobile Safari attempts to scale this page -->
+	<meta content="width=device-width, minimum-scale=1, maximum-scale=1" name="viewport">
+</head>
+<body>
+
+  
+    <!-- call ajax page -->
+   <div data-role="page" id="page" tabindex="0">
+   <div data-role="header" data-backbtn="false">
+   <div id="univheader">
+   <div id="logo"><a href="http://www.umkc.edu"><img src="images\logo.png" height="32px"></a></div>
+   <div id="homeButton"><a href="app.html" rel="external" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right" data-theme="b">Home</a></div>
+   </div> 
+   </div>
+  
+       <div id="con" data-role="content"> 
+      <center><img src="E-SaveLogo.png" style="height:110px;"/></center>
+    
+	<a href="#notification" data-transition="fade" data-rel="popup">
+   </a>
+<div data-role="popup" id="notification">
+	<center><p id="notification1"><p></center>
+</div>
+      <form id="callAjaxForm">
+      <div>
+      <input name="devname" id="devname" data-mini="true" value="welcomeactivity" type="hidden"/></div>
+      <center><h3>Welcome to E-Save activity:</h3>   
+      <select data-mini="true" name="flip-0" id="flip-0" data-role="slider">
+      <option value="off">Off</option>
+      <option value="on">On</option>
+      </select></center>
+      </form>
+	  <script src="http://code.highcharts.com/highcharts.js"></script>
+	  
+</div>       
+
+	
+<div data-role="footer" data-position="fixed" >		
+	<div data-role="navbar">
+		<ul>
+		    <li><a href="http://170.224.192.51/app.html">Home</a></li>
+			<li><a href="http://170.224.192.51/control.html">Device Control</a></li>
+			<li><a href="http://170.224.192.51/activity.html">Activities</a></li>
+			<li><a href="http://170.224.192.51/reccom.html">Recomendations</a></li>
+			<li><a href="http://170.224.192.51/edu.html">Education</a></li>
+		</ul>
+	</div><!-- /navbar -->
+</div><!-- /footer -->
+</div>
+  
+   
+</body>
+</html>

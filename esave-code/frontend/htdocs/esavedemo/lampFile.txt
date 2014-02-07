@@ -1,0 +1,2 @@
+device:Lamp:status::
+intensity:0

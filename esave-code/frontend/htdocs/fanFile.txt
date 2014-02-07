@@ -1,0 +1,2 @@
+device:Fan:status:on:
+speed:1

@@ -1,0 +1,2 @@
+device:heater:status:off:
+speed:0

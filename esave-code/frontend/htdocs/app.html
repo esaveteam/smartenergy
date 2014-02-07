@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>E-SAVE</title>
+      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.css" />
+	  <style>
+	  #page
+	  {
+	  background: #fff;
+	  
+	  }
+	  
+	  #con
+	  {
+	  
+width: 97%;
+padding: 10px;
+float:left;
+padding-top: 20px;
+margin-left: auto;
+margin-right: auto;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+  
+	  
+	  }
+	  #rt
+	  {
+	  width:30%;
+	  float:left;
+	  }
+	  #left
+	  {
+	  width:70%;
+	  float:right;
+	  
+	  }
+	  </style>
+      <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+      <script src="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.js"></script>
+	 	
+
+	
+	
+		<script type="text/javascript">
+		var a=0;
+		var i=0;
+		var dt=0,c1=0,c2=0,c3=0,c4=0,c5=0,c6=0;
+		var x = ["Cooling","Heating","Cleaning","Lighting","Cooking","Entertainment"];
+	function foo()
+   {
+   var form="a";
+    $.ajax({
+	                 type: "POST",
+                    url: "testws.php",
+                    cache: false,
+                    data: form,
+                    success: onSuccess,
+                    error: OnError
+				});
+
+   }
+   $(document).ready(function() {
+   goo();
+   setTimeout(goo, 10000)
+   
+   });
+   function goo()
+   {
+    var form="a";
+    $.ajax({
+                    type: "POST",
+                    url: "ener1.php",
+                    cache: false,
+                    data: form,
+                    success: onSuc,
+                    error: OnError
+                });
+   }
+   function onSuc(data, status)
+        {
+            data = $.trim(data);
+			
+		dt=data.split(":");
+                      c1=dt[0];
+			c2=dt[1];
+			c3=dt[2];
+			c4=dt[3];
+			c5=dt[4];
+			c6=dt[5];
+			
+			
+			
+        }
+		
+    function onSuccess(rtndata, status)
+        {
+            
+			data=$.trim(rtndata);
+		
+         
+		 a=data;
+		 var comment =0;
+		 
+		   if(i%8==0)
+		   {
+           comment = 1+Math.floor((Math.random()*10)+1);
+		   i++;
+		   }
+		   else
+		   {
+		   comment = 0+Math.floor((Math.random()*10)+1);
+		   i++;
+		   }
+		   var comment='Humidity:'+comment;
+
+ 
+            
+
+        }
+		function OnError(data, status)
+        {
+            data = $.trim(data);
+		
+         
+$("#notification1").text(data);
+
+            
+
+        }
+$(function () {
+    $(document).ready(function() {
+	    
+
+	     	Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+    
+        var chart;
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'left',
+                type: 'areaspline',
+                marginRight: 10,
+                events: {
+                    load: function() {
+    
+                        // set up the updating of the chart each second
+                        var series = this.series[0];
+                        setInterval(function() {
+                            foo();
+							
+							var x = (new Date()).getTime(), // current time
+                               
+							   y = parseInt(a);
+							   
+                            series.addPoint([x, y], true, true);
+                        }, 1000);
+                    }
+                }
+            },
+            title: {
+                text: 'Live Energy Consumption'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 250
+            },
+			 credits: {
+    enabled: false
+  },
+            yAxis: {
+                title: {
+                    text: 'Energy consumption in kW'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%H:%M:%S', this.x) +'<br/>'+
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+			
+                
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: true
+            },
+            series: [{
+                name: 'Energy Consumption',
+                data: (function() {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+			
+    
+                    for (i = -19; i <= 0; i++) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: a
+                        });
+                    }
+                    return data;
+                })()
+            }
+			  
+			]
+        });
+
+		
+    chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'rt',
+                
+            },
+            title: {
+                text: 'Total usage by percentage'
+            },
+			 credits: {
+    enabled: false
+  },
+            tooltip: {
+        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+            	percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Energy share',
+                data: [
+                    ['Cooling',10],
+                    ['Heating',15],
+                    ['Cleaning',15],
+                    ['Lighting',33],
+                    ['Cooking',22],                   
+					{
+                        name: 'Entertainment',
+                        y: 10,
+                        sliced: true,
+                        selected: true
+                    },
+                    ]
+        
+            }]
+        });
+    });
+    
+});
+		</script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- This meta tag is required, else Mobile Safari attempts to scale this page -->
+	<meta content="width=device-width, minimum-scale=1, maximum-scale=1" name="viewport">
+</head>
+<body>
+
+
+    <!-- call ajax page -->
+   <div data-role="page" id="page" tabindex="0">
+   <div data-role="header">
+   <div id="univheader">
+   <div id="logo"><a href="http://www.umkc.edu"><img src="images\logo.png" height="32px"></a></div>
+   <link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+		<script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+   <div id="homeButton"><a href="#" rel="prettyPhoto" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right" data-theme="b">Home</a></div>
+   </div> 
+   </div>
+   <audio controls="controls" autoplay="autoplay" style="display:none;">
+      <source src="http://170.224.192.69/ttshelp.php?tl=en&q=Welcome%20to%20E%20SAVE%20Laboratories%20Activity%20Site" type="audio/mpeg" />
+   </audio>
+<p id="humidity"></p>
+          
+       <div id="con" data-role="content"> 
+      <center><img src="E-SaveLogo.png" style="height:110px;"/></center>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+	 
+	<div id="rt" class="right">
+	
+	</div>
+
+	<div id="left" class="left">
+	</div>
+	
+	</div>
+	
+<div data-role="footer" data-position="fixed">		
+	<div data-role="navbar">
+		<ul>
+		    <li><a href="#">Home</a></li>
+			<li><a href="http://170.224.192.51/control.html">Device Control</a></li>
+			<li><a href="http://170.224.192.51/activity.html">Activities</a></li>
+			<li><a href="http://170.224.192.51/reccom.html">Recommendations</a></li>
+			<li><a href="http://170.224.192.51/edu.html">Education</a></li>
+		    
+		</ul>
+	</div><!-- /navbar -->
+</div><!-- /footer -->
+</div>
+  
+    <script type="text/javascript" src="google-tts.min.js"></script>
+<script>
+
+</script>
+	</body>
+</html>

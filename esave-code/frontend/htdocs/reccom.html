@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>E-SAVE</title>
+      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.css" />
+	  <style>
+	  #page
+	  {
+	  background: #fff;
+	  
+	  }
+	  
+	  #con
+	  {
+	  
+width: 99%;
+padding: 10px;
+float:left;
+padding-top: 20px;
+margin-left: auto;
+margin-right: auto;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+  
+	  
+	  }
+	  	  p
+	  {
+	  font-size:1.2em;
+	
+	  }
+	  td
+	  {
+	  border:1px solid;
+	  padding:5px;
+	  }
+	  table
+	  {
+	  
+	  border:1px solid;
+	  }
+	  </style>
+	  
+      <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+      <script src="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.js"></script>
+		<script>
+		$(document).ready(function() {
+		 var total=0;
+		$("#slider-1").change(function() {
+               
+		      var a=$("#slider-1").val();
+			  if(a=='accept')
+			  {
+			  $("#1d").text('$1');
+			  $("#1a").text('$365');
+			  total=total+365;
+			  $("#to").text(total);
+			  }
+			  else
+			  {
+			   $("#1d").text('$0');
+			  $("#1a").text('$0');
+			  }
+            });
+			$("#slider-2").change(function() {
+                
+		      var a=$("#slider-2").val();
+			  if(a=='accept')
+			  {
+			  $("#2d").text('$2');
+			  $("#2a").text('$730');
+               total=total+730;
+			 $("#to").text(total);
+			
+			 }
+			  else
+			  {
+			   $("#2d").text('$0');
+			  $("#2a").text('$0');
+			  }
+            });
+		$("#slider-3").change(function() {
+                
+		      var a=$("#slider-3").val();
+			  if(a=='accept')
+			  {
+			  $("#3d").text('$1.5');
+			  $("#3a").text('$547.5');
+			   total=total+547.5;
+			 $("#to").text(total);
+			  }
+			  else
+			  {
+			   $("#3d").text('$0');
+			  $("#3a").text('$0');
+			  }
+            });
+		$("#slider-4").change(function() {
+                
+		      var a=$("#slider-4").val();
+			  if(a=='accept')
+			  {
+			  $("#4d").text('$2.5');
+			  $("#4a").text('$912.5');
+			   total=total+912.5;
+			 $("#to").text(total);
+			  }
+			  else
+			  {
+			   $("#4d").text('$0');
+			  $("#4a").text('$0');
+			  }
+            });
+		$("#slider-5").change(function() {
+                
+		      var a=$("#slider-5").val();
+			  if(a=='accept')
+			  {
+			  $("#5d").text('$1.7');
+			  $("#5a").text('$620.5');
+			   total=total+620.5;
+			 $("#to").text(total);
+			  }
+			  else
+			  {
+			   $("#5d").text('$0');
+			  $("#5a").text('$0');
+			  }
+            });
+		$("#slider-6").change(function() {
+                
+		      var a=$("#slider-6").val();
+			  if(a=='accept')
+			  {
+			  $("#6d").text('$1');
+			  $("#6a").text('$325');
+			   total=total+325;
+			 $("#to").text(total);
+			  }
+			  else
+			  {
+			   $("#6d").text('$0');
+			  $("#6a").text('$0');
+			  }
+            });
+		
+			});
+		</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- This meta tag is required, else Mobile Safari attempts to scale this page -->
+	<meta content="width=device-width, minimum-scale=1, maximum-scale=1" name="viewport">
+</head>
+<body>
+
+  
+    <!-- call ajax page -->
+   <div data-role="page" id="page" tabindex="0">
+   <div data-role="header">
+   <div id="univheader">
+   <div id="logo"><a href="http://www.umkc.edu"><img src="images\logo.png" height="32px"></a></div>
+   <div id="homeButton"><a href="app.html" rel="external" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right" data-theme="b">Home</a></div>
+   </div> 
+   </div>
+  
+       <div id="con" data-role="content"> 
+      <center><img src="E-SaveLogo.png" style="height:110px;"/></center>
+	 <br/>
+	 
+	 <center><h3>Recommendations
+	 </h3>
+	 <form id="callAjaxForm">
+      
+	 <table cellpadding="0" cellspacing="0">
+      <thead><td>Reccomendation</td><td width="30%">Status</td><td>Daily Savings</td><td>Annual Saving</td></th></thead>
+      <tr><td>Lower the water temperature of your water heater</td>
+      
+      <td><select name="slider-1" id="slider-1">
+	    <option value=""></option>
+        <option value="accept">Accept</option>
+        
+        <option value="CNN">Discard</option>
+		
+    </select></td>
+      
+	  <td>
+	  <p id="1d"></p></td>
+	  
+      <td>
+      
+	  <p id="1a"></p>
+	  
+      </td></tr>
+	  <tr><td>Turning off appliances when leaving room </td>
+      
+      <td><select name="slider-2" id="slider-2">
+        <option value=""></option>
+        <option value="accept">Accept</option>
+        
+        <option value="CNN">Discard</option>
+		</select></td>
+      
+	  <td>
+	  <p id="2d"></p></td>
+	  
+      <td>
+      
+	  <p id="2a"></p>
+	  
+      </td></tr>
+	  <tr><td>Turning off computer when going to sleep</td>
+      
+      <td><select name="slider-3" id="slider-3">
+        <option value=""></option>
+        <option value="accept">Accept</option>
+        
+        <option value="CNN">Discard</option>
+		</select></td>
+      
+	  <td>
+	  <p id="3d"></p></td>
+	  
+      <td>
+      
+	  <p id="3a"></p>
+	  
+      </td></tr>
+	  <tr><td>Use Revolving Doors to save heating and cooling costs in buildings.</td>
+      
+      <td><select name="slider-4" id="slider-4">
+        <option value=""></option>
+        <option value="accept">Accept</option>
+        
+        <option value="CNN">Discard</option>
+		</select></td>
+      
+	  <td>
+	  <p id="4d"></p></td>
+	  
+      <td>
+      
+	  <p id="4a"></p>
+	  
+      </td></tr>
+	  <tr><td>Insulate windows by stopping air leaks with duct tape in the winter to keep your room warmer</td>
+      
+      <td><select name="slider-5" id="slider-5">
+        <option value=""></option>
+        <option value="accept">Accept</option>
+        
+        <option value="CNN">Discard</option>
+		</select></td>
+      
+	  <td>
+	  <p id="5d"></p></td>
+	  
+      <td>
+      
+	  <p id="5a"></p>
+	  
+      </td></tr>
+	  <tr><td>Use compact florescent lights with energy-efficiency lighting and other energy-efficient appliances</td>
+      
+      <td><select name="slider-6" id="slider-6">
+        <option value=""></option>
+        <option value="accept">Accept</option>
+        
+        <option value="CNN">Discard</option>
+		</select></td>
+      
+	  <td>
+	  <p id="6d"></p></td>
+	  
+      <td>
+      
+	  <p id="6a"></p>
+	  
+      </td></tr>
+	  <tr><td>Total Savings(anually):</td><td colspan="3" id='to'></td></tr>
+      </table>
+	  
+
+
+	
+</form>
+
+	</div>
+	
+<div data-role="footer" data-position="fixed">		
+	<div data-role="navbar">
+		<ul>
+		    <li><a href="http://170.225.98.69/app.html">Home</a></li>
+			<li><a href="http://170.225.98.69/control.html">Device Control</a></li>
+			<li><a href="http://170.225.98.69/activity.html">Activities</a></li>
+			<li><a href="http://170.225.98.69/reccom.html">Recomendations</a></li>
+			<li><a href="http://170.225.98.69/edu.html">Education</a></li>
+		</ul>
+	</div><!-- /navbar -->
+</div><!-- /footer -->
+</div>
+  
+   
+</body>
+</html>

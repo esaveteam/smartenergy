@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Google Maps JavaScript API Example: Simple Icon</title>
+    <script src="//maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyDP2BJVXb7VhgFIPI4cf6J3QoHEcUADOXM"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(39.034777, -94.579172), 13);
+        map.setUIToDefault();
+        
+        // Create our "tiny" marker icon
+        var blueIcon = new GIcon(G_DEFAULT_ICON);
+        blueIcon.image = "http://170.225.98.69/images/UMKC-logo.gif";
+		
+		// Set up our GMarkerOptions object
+		markerOptions = { icon:blueIcon };
+
+        // Add 10 markers to the map at random locations
+        var bounds = map.getBounds();
+        var southWest = bounds.getSouthWest();
+        var northEast = bounds.getNorthEast();
+        var lngSpan = northEast.lng() - southWest.lng();
+        var latSpan = northEast.lat() - southWest.lat();
+       
+          var latlng = new GLatLng(39.034777, -94.579172);
+          map.addOverlay(new GMarker(latlng, markerOptions));
+        
+      }
+    }
+
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+    <div id="map_canvas" style="width: 500px; height: 300px"></div>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<meta name="viewport" content="width=280; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0">
+
+
+<script src="http://wami.csail.mit.edu/wami-2.0.js"></script>
+<style type="text/css"></style>
+
+<script>
+var myWamiApp; 
+function onLoad() {
+  	// JSGF grammar for your application
+	var jsgf = 
+		"#JSGF V1.0;\n" +
+		"grammar parrot;\n" +
+		"public <top> = hello | fan | light;\n";
+
+  	var grammar = {
+                language : "en-us", 
+                grammar : jsgf
+        };
+
+  	// Handlers are functions which are called for various events:
+  	var options = {
+          guiID : 'AudioContainer',
+          devKey : '30df19c7d08c186b889a97db20e830ba',
+          grammar : grammar,
+          onReady : onWamiReady, //WAMI is loaded and ready
+          onRecognition : onWamiRecognitionResult,  //Speech recognition result available
+	  onError : onWamiError,  //An error occurred
+	  onTimeout : onWamiTimeout
+        }; //WAMI timed out due to inactivity
+
+    //Create your WAMI application with the settings and grammar we just created
+  	myWamiApp = new Wami.App(options);
+}
+
+function onWamiReady() {
+	//Called when your WAMI application is ready.  You might wait until now
+	//to tell the user it's time to start interacting
+}
+
+//called when a speech recognition result is received
+//since we set sendIncrementalResults to false, this will only
+//be called after the user finishes speaking.  Otherwise,
+//it will be called many times as the user speaks.
+function onWamiRecognitionResult(result) {
+	var hyp = result.text();  //what we think the user said
+	if(hyp=="fan")
+	window.location="http://170.225.98.69/fan.html";
+	
+	
+}
+
+//called when an error occurs
+function onWamiError(type, message) {
+	alert("WAMI error: type  = " + type + ", message = " + message);	
+}
+
+//called when your WAMI session times out due to
+//in activity.
+function onWamiTimeout() {
+	alert("WAMI timed out.  Hit reload to start over");
+}
+
+</script>
+<script src="./WAMI Parrot_files/content"></script><style type="text/css" media="screen">#widf0ce4591717 {outline:none}</style></head>
+
+<!--  Your web page goes here.  Set the onload attribute to make sure the onLoad() function
+      defined above is called.  -->
+<body onload="onLoad()">
+	<center>
+		<div id="AudioContainer"></div>
+
+	</center>
+
+
+</body></html>

@@ -1,0 +1,398 @@
+<html>
+<head>
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.css" />
+	  <style>
+	  #page
+	  {
+	  background: #fff;
+	  
+	  }
+	  
+	  #con
+	  {
+	  
+width: 97%;
+padding: 20px;
+float:left;
+padding-top: 20px;
+margin-left: auto;
+margin-right: auto;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+  
+	  
+	  }
+	  image
+	  {
+	   height:80px;
+	   padding:20px;
+	  }
+	  #rt
+	  {
+	  width:30%;
+	  float:left;
+	  }
+	  #graph
+	  {
+	  padding:0px;
+	  height:270px;
+	  
+	  
+	  }
+	  </style>
+      <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+      <script src="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.js"></script>
+	  <script>
+      
+    
+		function onSucess(data, status)
+        {
+            data = $.trim(data);
+			var dt=data.split(":");
+            var devfan=dt[0];
+			var statf=dt[1];
+			var devlamp=dt[2];
+			var statl=dt[3];
+			var devtv=dt[4];
+			var statt=dt[5];
+             var stattl=dt[9];
+			 var stath=dt[7];
+			 var statv=dt[11];
+         if(statf=='on')
+		 {
+document.getElementById("fan").src="im/fan_on.jpg";
+document.getElementById("fan").alt="on";
+
+}          
+		  else
+{
+		  document.getElementById("fan").src = "im/fan_off.jpg";
+ 			document.getElementById("fan").alt="off";
+			
+}
+if(statt=='on')
+		 {
+document.getElementById("tv").src="im/tv_on.jpg";
+document.getElementById("tv").alt="on";
+}          
+		  else
+{
+		  
+			document.getElementById("tv").src="im/tv_off.jpg";
+document.getElementById("tv").alt="off";
+}
+if(statl=='on')
+		 {
+document.getElementById("lamp").src="im/lamp_on.jpg";
+document.getElementById("lamp").alt="on";
+}          
+		  else
+{
+		  
+			document.getElementById("lamp").src="im/lamp_off.jpg";
+document.getElementById("lamp").alt="off";
+}
+if(stattl=='on')
+		 {
+document.getElementById("tablelamp").src="im/tablelamp_on.jpg";
+document.getElementById("tablelamp").alt="on";
+}          
+		  else
+{
+		  
+			document.getElementById("tablelamp").src="im/tablelamp_off.jpg";
+document.getElementById("tablelamp").alt="off";
+}
+if(stath=='on')
+		 {
+document.getElementById("heater").src="im/heater_on.jpg";
+document.getElementById("heater").alt="on";
+}          
+		  else
+{
+		  
+			document.getElementById("heater").src="im/heater_off.jpg";
+document.getElementById("heater").alt="off";
+}
+        
+		if(statv=='on')
+		 {
+document.getElementById("vaccum").src="im/vaccum_on.jpg";
+document.getElementById("vaccum").alt="on";
+}          
+		  else
+{
+		  
+			document.getElementById("vaccum").src="im/vaccum_off.jpg";
+document.getElementById("vaccum").alt="off";
+}
+        }
+        
+function onSuccess(data, status)
+        {
+            
+
+        }
+        
+
+        
+
+        function onError(data, status)
+        {
+            // handle an error
+        }        
+    function a(dev)
+	{
+	var d;
+	
+	var form=document.getElementById(dev).getAttribute("alt");
+	if(form=='on')
+	{
+	 d1='devname=';
+	 d2=d1.concat(dev);
+	 d3='&flip-0=off'
+	 d=d2.concat(d3);
+	 }else
+	 {
+	 d1='devname=';
+	 d2=d1.concat(dev);
+	 d3='&flip-0=on'
+	 d=d2.concat(d3);
+	 }
+	$.ajax({
+                    type: "POST",
+                    url: "service.php",
+				    cache: false,
+                    data: d,
+                    success: onSucess,
+                    error: onError
+                });
+				$.ajax({
+                    type: "POST",
+                    url: "stat.php",
+				    cache: false,
+                    data: d,
+                    success: onSucess,
+                    error: onError
+                });
+	}
+       $(document).ready(function() {
+            var form = "a";
+            $.ajax({
+                    type: "POST",
+                    url: "stat.php",
+				    cache: false,
+                    data: form,
+                    success: onSucess,
+                    error: onError
+                });
+				function foo()
+   {
+    var form="a";
+    $.ajax({
+                    type: "POST",
+                    url: "ener.php",
+                    cache: false,
+                    data: form,
+                    success: onSuccess1,
+                    error: onError
+                });
+   }
+   $(document).ready(function() {
+   goo();
+   setTimeout(goo, 10000)
+   
+   });
+   function goo()
+   {
+    var form="a";
+    $.ajax({
+                    type: "POST",
+                    url: "ener1.php",
+                    cache: false,
+                    data: form,
+                    success: onSuc,
+                    error: onError
+                });
+   }
+   function onSuc(data, status)
+        {
+            data = $.trim(data);
+			
+		dt=data.split(":");
+                      c1=dt[0];
+			c2=dt[1];
+			c3=dt[2];
+			c4=dt[3];
+			c5=dt[4];
+			c6=dt[5];
+			
+			
+			
+        }
+		var a=0;
+    function onSuccess1(data, status)
+        {
+            data = $.trim(data);
+			
+		var num = data / 1000;
+         
+		 a=num;
+		 
+
+
+            
+
+        }
+		function onError(data, status)
+        {
+            data = $.trim(data);
+		
+         
+$("#notification1").text(data);
+
+            
+
+        }
+	     	Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+    
+        var chart;
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'graph1',
+                type: 'areaspline',
+                marginRight: 10,
+                events: {
+                    load: function() {
+    
+                        // set up the updating of the chart each second
+                        var series = this.series[0];
+                        setInterval(function() {
+                            foo();
+							
+							var x = (new Date()).getTime(), // current time
+                               
+							   y = a+Math.random()*0.01;
+							   
+                            series.addPoint([x, y], true, true);
+                        }, 1000);
+                    }
+                }
+            },
+            title: {
+                text: 'Live Energy Consumption'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 250
+            },
+			 credits: {
+    enabled: false
+  },
+            yAxis: {
+                title: {
+                    text: 'Energy consumption in kW'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%H:%M:%S', this.x) +'<br/>'+
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+			
+                
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: true
+            },
+            series: [{
+                name: 'Energy Consumption',
+                data: (function() {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+			
+    
+                    for (i = -19; i <= 0; i++) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: a
+                        });
+                    }
+                    return data;
+                })()
+            }
+			  
+			]
+        });
+    
+					});		
+			</script>
+</head>
+<body>
+<div data-role="page" id="page" tabindex="0">
+   <div data-role="header">
+   <div id="univheader">
+   <div id="logo"><a href="http://www.umkc.edu"><img src="images\logo.png" height="32px"></a></div>
+   <div id="homeButton"><a href="app.html" rel="external" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right" data-theme="b">Home</a></div>
+   </div> 
+   </div>
+  
+       <div id="con" data-role="content"> 
+      <center><img src="E-SaveLogo.png" style="height:110px;"/>
+	  <audio id="audioPlayer" controls="controls" autoplay="autoplay" style="display:none;">
+      <source id="adsource" type="audio/mpeg" />
+   </audio>
+   <br/>
+	<br/>
+	<br/>
+	<br/>
+	<a href="#notification" data-transition="fade" data-rel="popup"> 
+   </a>
+   <p id="greeting"></p>
+   
+	  <br/>
+	  <div id="graph">
+	  <table>
+	  <tr><td><a href="#" onclick="a('fan');"><img id="fan" ></a></td>
+	  <td><a href="#" onclick="a('tv');"><img id="tv"></a></td>
+	  <td><a href="#" onclick="a('lamp');"><img id="lamp" ></a></td></tr>
+	  <tr><td><a href="#" onclick="a('tablelamp');"><img id="tablelamp"></a></td>
+	  <td><a href="#" onclick="a('vaccum');"><img id="vaccum"></a></td>
+	  <td><a href="#" onclick="a('heater');"><img style="height:80px;" id="heater"></a></td></tr>
+	  </table>
+	  </div>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+	
+	  <div id="graph1">
+	  </div>
+	  </div>
+<div data-role="footer" data-position="fixed">		
+	<div data-role="navbar">
+		<ul>
+		    <li><a href="http://170.224.192.51/app.html">Home</a></li>
+			<li><a href="http://170.224.192.51/control.html">Device Control</a></li>
+			<li><a href="http://170.224.192.51/activity.html">Activities</a></li>
+			<li><a href="http://170.224.192.51/reccom.html">Recomendations</a></li>
+			<li><a href="http://170.224.192.51/edu.html">Education</a></li>
+		</ul>
+	</div><!-- /navbar -->
+</div><!-- /footer -->
+</div>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>E-SAVE</title>
+      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.css" />
+	  <style>
+	  #page
+	  {
+	  background: #fff;
+	  
+	  }
+	  
+	  #con
+	  {
+	  
+width: 97%;
+padding: 20px;
+float:left;
+padding-top: 20px;
+margin-left: auto;
+margin-right: auto;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+  
+	  
+	  }
+	  #rt
+	  {
+	  width:30%;
+	  float:left;
+	  }
+	  #graph
+	  {
+	  padding:20px;
+	  height:300px;
+	  
+	  
+	  }
+	  </style>
+      <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+      <script src="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.js"></script>
+    <script>
+       
+      function onSuccess(data, status)
+        {
+            data = $.trim(data);
+			var dt=data.split(",");
+            var sta=dt[0];
+            var spe=dt[1];
+	var a='http://170.224.192.51/ttshelp.php?tl=en&q='+data;
+			$('#adsource').attr('src',a).detach().appendTo($("#audioPlayer"));
+         
+$("#notification1").text(data);
+
+            
+
+        }
+        function onSucess(data, status)
+        {
+            data = $.trim(data);
+            var a='http://170.224.192.51/ttshelp.php?tl=en&q='+data;
+			$('#adsource').attr('src',a).detach().appendTo($("#audioPlayer"));
+         
+			var dt=data.split(",");
+            var sta=dt[0];
+            var spe=dt[1];
+               if(sta=="on")
+            {$('#flip-0').val("on");
+             $('#slider-0').val(spe);
+}            
+else{
+            $('#flip-0').val("off");
+     }       
+try {
+         $('#flip-0').slider("refresh");
+            $('#slider-0').slider("refresh");
+     }
+     catch (err) {
+         console.log ("Error occurred refreshing slider (probabily first time!)");
+     }
+
+        }
+
+        function onError(data, status)
+        {
+            // handle an error
+        }        
+  
+       $(document).ready(function() {
+            var form = $("#callAjaxForm").serialize();
+            $.ajax({
+                    type: "POST",
+                    url: "servicestatus.php",
+                    cache: false,
+                    data: form,
+                    success: onSucess,
+                    error: onError
+                });
+   
+            $("#flip-0").change(function() {
+                var state=$("#flip-0").val();
+		if(state=='off')
+		{
+		 $( "#slider-0" ).slider( "disable" );
+		}
+else
+{
+ $( "#slider-0" ).slider( "enable" );
+}      
+                var formData = $("#callAjaxForm").serialize();
+  
+                $.ajax({
+                    type: "POST",
+                    url: "service.php",
+                    cache: false,
+                    data: formData,
+                    success: onSuccess,
+                    error: onError
+                });
+  
+                return false;
+            });
+	$("#slider-0").change(function() {
+                
+		      var formData = $("#callAjaxForm").serialize();
+                  
+                $.ajax({
+                    type: "POST",
+                    url: "service.php",
+                    cache: false,
+                    data: formData,
+                    success: onSuccess,
+                    error: onError
+                });
+  
+                return false;
+            });
+			
+function foo()
+   {
+    var form="devname=fan";
+    $.ajax({
+                    type: "POST",
+                    url: "ener.php",
+                    cache: false,
+                    data: form,
+                    success: onSuccess1,
+                    error: onError
+                });
+   }
+   $(document).ready(function() {
+   goo();
+   setTimeout(goo, 10000)
+   
+   });
+   function goo()
+   {
+    var form="a";
+    $.ajax({
+                    type: "POST",
+                    url: "ener1.php",
+                    cache: false,
+                    data: form,
+                    success: onSuc,
+                    error: onError
+                });
+   }
+   function onSuc(data, status)
+        {
+            data = $.trim(data);
+			
+		dt=data.split(":");
+                      c1=dt[0];
+			c2=dt[1];
+			c3=dt[2];
+			c4=dt[3];
+			c5=dt[4];
+			c6=dt[5];
+			
+			
+			
+        }
+		var a=0;
+    function onSuccess1(data, status)
+        {
+            data = $.trim(data);
+			
+		var num = data / 1000;
+         
+		 a=num;
+		 
+
+
+            
+
+        }
+		function onError(data, status)
+        {
+            data = $.trim(data);
+		
+         
+$("#notification1").text(data);
+
+            
+
+        }
+	     	Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+    
+        var chart;
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'graph',
+                type: 'areaspline',
+                marginRight: 10,
+                events: {
+                    load: function() {
+    
+                        // set up the updating of the chart each second
+                        var series = this.series[0];
+                        setInterval(function() {
+                            foo();
+							
+							var x = (new Date()).getTime(), // current time
+                               
+							   y = a;
+							   
+                            series.addPoint([x, y], true, true);
+                        }, 1000);
+                    }
+                }
+            },
+            title: {
+                text: 'Live Energy Consumption'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 250
+            },
+			 credits: {
+    enabled: false
+  },
+            yAxis: {
+                title: {
+                    text: 'Energy consumption in kW'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%H:%M:%S', this.x) +'<br/>'+
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+			
+                
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: true
+            },
+            series: [{
+                name: 'Energy Consumption',
+                data: (function() {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+			
+    
+                    for (i = -19; i <= 0; i++) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: a
+                        });
+                    }
+                    return data;
+                })()
+            }
+			  
+			]
+        });
+    
+
+});
+	  </script>
+	  <script src="http://wami.csail.mit.edu/wami-2.0.js"></script>
+<style type="text/css"></style>
+  <script>
+var myWamiApp; 
+function onLoad() {
+  	// JSGF grammar for your application
+	var jsgf = 
+		"#JSGF V1.0;\n" +
+		"grammar parrot;\n" +
+		"public <top> = on | off | set speed 3 |set speed 2 | set speed 1;\n";
+
+  	var grammar = {
+                language : "en-us", 
+                grammar : jsgf
+        };
+
+  	// Handlers are functions which are called for various events:
+  	var options = {
+          guiID : 'AudioContainer',
+          devKey : '30df19c7d08c186b889a97db20e830ba',
+          grammar : grammar,
+          onReady : onWamiReady, //WAMI is loaded and ready
+          onRecognition : onWamiRecognitionResult,  //Speech recognition result available
+	  onError : onWamiError,  //An error occurred
+	  onTimeout : onWamiTimeout
+        }; //WAMI timed out due to inactivity
+
+    //Create your WAMI application with the settings and grammar we just created
+  	myWamiApp = new Wami.App(options);
+}
+
+function onWamiReady() {
+	//Called when your WAMI application is ready.  You might wait until now
+	//to tell the user it's time to start interacting
+}
+
+//called when a speech recognition result is received
+//since we set sendIncrementalResults to false, this will only
+//be called after the user finishes speaking.  Otherwise,
+//it will be called many times as the user speaks.
+function onWamiRecognitionResult(result) {
+	var hyp = result.text();  //what we think the user said
+	if(hyp=="on")
+	{
+	$('#flip-0').val("on");
+	try {
+         $('#flip-0').slider("refresh");
+            $('#slider-0').slider("refresh");
+     }
+     catch (err) {
+         console.log ("Error occurred refreshing slider (probabily first time!)");
+     }
+
+	var formData = $("#callAjaxForm").serialize();
+                  
+                $.ajax({
+                    type: "POST",
+                    url: "service.php",
+                    cache: false,
+                    data: formData,
+                    success: onSuccess,
+                    error: onError
+                });
+	}
+	if(hyp=="off")
+	{
+	try {
+         $('#flip-0').slider("refresh");
+            $('#slider-0').slider("refresh");
+     }
+     catch (err) {
+         console.log ("Error occurred refreshing slider (probabily first time!)");
+     }
+
+	$('#flip-0').val("off");
+	var formData = $("#callAjaxForm").serialize();
+                  
+                $.ajax({
+                    type: "POST",
+                    url: "service.php",
+                    cache: false,
+                    data: formData,
+                    success: onSuccess,
+                    error: onError
+                });
+	}
+	if(hyp=="set speed 3")
+	{
+	try {
+         $('#flip-0').slider("refresh");
+            $('#slider-0').slider("refresh");
+     }
+     catch (err) {
+         console.log ("Error occurred refreshing slider (probabily first time!)");
+     }
+
+	var formData = $("#callAjaxForm").serialize();
+                  
+                $.ajax({
+                    type: "POST",
+                    url: "service.php",
+                    cache: false,
+                    data: formData,
+                    success: onSuccess,
+                    error: onError
+                });
+	}
+}
+
+//called when an error occurs
+function onWamiError(type, message) {
+	alert("WAMI error: type  = " + type + ", message = " + message);	
+}
+
+//called when your WAMI session times out due to
+//in activity.
+function onWamiTimeout() {
+	alert("WAMI timed out.  Hit reload to start over");
+}
+
+</script>
+<script src="./WAMI Parrot_files/content"></script><style type="text/css" media="screen">#widf0ce4591717 {outline:none}</style>
+
+		
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- This meta tag is required, else Mobile Safari attempts to scale this page -->
+	<meta content="width=device-width, minimum-scale=1, maximum-scale=1" name="viewport">
+</head>
+<body onload="onLoad()">
+
+  
+    <!-- call ajax page -->
+   <div data-role="page" id="page" tabindex="0">
+   <div data-role="header">
+   <div id="univheader">
+   <div id="logo"><a href="http://www.umkc.edu"><img src="images\logo.png" height="32px"></a></div>
+   <div id="homeButton"><a href="app.html" rel="external" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right" data-theme="b">Home</a></div>
+   </div> 
+   </div>
+  
+       <div id="con" data-role="content"> 
+      <center><img src="E-SaveLogo.png" style="height:110px;"/>
+		<div id="AudioContainer" style="height:10px;"></div>
+
+	</center>
+	
+    
+    <audio id="audioPlayer" controls="controls" autoplay="autoplay" style="display:none;">
+      <source id="adsource" type="audio/mpeg" />
+   </audio>
+   <br/>
+	<br/>
+	<br/>
+	<br/>
+	<a href="#notification" data-transition="fade" data-rel="popup"> 
+   </a>
+<div data-role="popup" id="notification">
+	<center><p id="notification1"><p></center>
+</div>
+      <form id="callAjaxForm">
+      <div>
+      <input name="devname" id="devname" data-mini="true" value="fan" type="hidden"/></div>
+      <div class="ui-grid-a">
+
+      <div class="ui-block-a"><img src="images\fan.jpg" height="42px">
+      <select data-mini="true" name="flip-0" id="flip-0" data-role="slider">
+      <option value="off">Off</option>
+      <option value="on">On</option>
+      </select></div>
+      <div class="ui-block-b"><label for="slider-0">Speed:</label>
+      <input readonly = "readonly" type="range" data-mini="true" name="slider-0" id="slider-0" value="0" min="1" max="3" />
+      </div>
+      </div>
+	  <br/>
+      </form>
+	  <script src="http://code.highcharts.com/highcharts.js"></script>
+	  <br/>
+	  <div id="graph">
+	  </div>
+</div>       
+
+	
+<div data-role="footer" data-position="fixed">		
+	<div data-role="navbar">
+		<ul>
+		    <li><a href="http://170.224.192.51/app.html">Home</a></li>
+			<li><a href="http://170.224.192.51/control.html">Device Control</a></li>
+			<li><a href="http://170.224.192.51/activity.html">Activities</a></li>
+			<li><a href="http://170.224.192.51/reccom.html">Recomendations</a></li>
+			<li><a href="http://170.224.192.51/edu.html">Education</a></li>
+		</ul>
+	</div><!-- /navbar -->
+</div><!-- /footer -->
+</div>
+  
+   
+</body>
+</html>

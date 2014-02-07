@@ -1,0 +1,1 @@
+device:welcomeactivity:status:on:

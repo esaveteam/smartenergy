@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>E-SAVE</title>
+      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.css" />
+	  <style>
+	  #page
+	  {
+	  background: #fff;
+	  
+	  }
+	  
+	  #con
+	  {
+	  
+width: 99%;
+padding: 10px;
+float:left;
+padding-top: 20px;
+margin-left: auto;
+margin-right: auto;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+  
+	  
+	  }
+	  #rt
+	  {
+	   padding:20px;
+	   width:13%;
+	   float:left;
+	   border:1px solid;
+	  }
+	  #ct
+	  {
+	   padding:20px;
+	   width:13%;
+	   float:left;
+	   border-top:1px solid;
+	   border-bottom:1px solid;
+	  
+	  }
+	  #ct1
+	  {
+	   padding:20px;
+	   width:13%;
+	   float:left;
+	   border:1px solid;
+	   
+	  
+	  }
+	  #ct2
+	  {
+	   padding:20px;
+	   width:13%;
+	   float:left;
+	   border-top:1px solid;
+	   border-bottom:1px solid;
+	  
+	  }
+	  #lt
+	  {
+	   padding:20px;
+	   width:13%;
+	   float:left;
+	   border:1px solid;
+	   
+	  
+	  }
+	  #lt1
+	  {
+	   padding:20px;
+	   width:13%;
+	   float:left;
+	   border-right:1px solid;
+	   border-top:1px solid;
+	   border-bottom:1px solid;
+	  
+	  }
+	  </style>
+      <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+      <script src="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.js"></script>
+		<script src="http://wami.csail.mit.edu/wami-2.0.js"></script>
+<style type="text/css"></style>
+
+<script>
+var myWamiApp; 
+function onLoad() {
+  	// JSGF grammar for your application
+	var jsgf = 
+		"#JSGF V1.0;\n" +
+		"grammar parrot;\n" +
+		"public <top> = table lamp | fan | lamp | air conditioner | stove | television | heater |vaccum cleaner | dish washer;\n";
+
+  	var grammar = {
+                language : "en-us", 
+                grammar : jsgf
+        };
+
+  	// Handlers are functions which are called for various events:
+  	var options = {
+          guiID : 'AudioContainer',
+          devKey : '30df19c7d08c186b889a97db20e830ba',
+          grammar : grammar,
+          onReady : onWamiReady, //WAMI is loaded and ready
+          onRecognition : onWamiRecognitionResult,  //Speech recognition result available
+	  onError : onWamiError,  //An error occurred
+	  onTimeout : onWamiTimeout
+        }; //WAMI timed out due to inactivity
+
+    //Create your WAMI application with the settings and grammar we just created
+  	myWamiApp = new Wami.App(options);
+}
+
+function onWamiReady() {
+	//Called when your WAMI application is ready.  You might wait until now
+	//to tell the user it's time to start interacting
+}
+
+//called when a speech recognition result is received
+//since we set sendIncrementalResults to false, this will only
+//be called after the user finishes speaking.  Otherwise,
+//it will be called many times as the user speaks.
+function onWamiRecognitionResult(result) {
+	var hyp = result.text();  //what we think the user said
+	if(hyp=="fan")
+	window.location="http://170.224.192.51/fan.html";
+	if(hyp=="lamp")
+	window.location="http://170.224.192.51/lamp.html";
+	if(hyp=="table lamp")
+	window.location="http://170.224.192.51/tablelamp.html";
+	if(hyp=="vaccum cleaner")
+	window.location="http://170.224.192.51/vaccum.html";
+	if(hyp=="television")
+	window.location="http://170.224.192.51/tv.html";
+	if(hyp=="stove")
+	window.location="http://170.224.192.51/stove.html";
+	if(hyp=="heater")
+	window.location="http://170.224.192.51/heater.html";
+	if(hyp=="dish washer")
+	window.location="http://170.224.192.51/dishwasher.html";
+	if(hyp=="air conditioner")
+	window.location="http://170.224.192.51/airconditioner.html";
+	
+	
+}
+
+//called when an error occurs
+function onWamiError(type, message) {
+	alert("WAMI error: type  = " + type + ", message = " + message);	
+}
+
+//called when your WAMI session times out due to
+//in activity.
+function onWamiTimeout() {
+	alert("WAMI timed out.  Hit reload to start over");
+}
+
+</script>
+<script src="./WAMI Parrot_files/content"></script><style type="text/css" media="screen">#widf0ce4591717 {outline:none}</style></head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- This meta tag is required, else Mobile Safari attempts to scale this page -->
+	<meta content="width=device-width, minimum-scale=1, maximum-scale=1" name="viewport">
+</head>
+<body onload="onLoad()">
+
+  
+    <!-- call ajax page -->
+   <div data-role="page" id="page" tabindex="0">
+   <div data-role="header">
+   <div id="univheader">
+   <div id="logo"><a href="http://www.umkc.edu"><img src="images\logo.png" height="32px"></a></div>
+   <div id="homeButton"><a href="app.html" rel="external" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right" data-theme="b">Home</a></div>
+   </div> 
+   </div>
+  
+       <div id="con" data-role="content"> 
+      <center><img src="E-SaveLogo.png" style="height:110px;"/></center>
+	 <br/>
+	 
+	 <center>
+		<div id="AudioContainer" ></div>
+
+	</center>
+	<br/>
+	 <div id="rt" class="right">
+	<center><h3>Entertainment devices</h3>
+	<br/>
+	<div class="ui-grid-a">
+<div class="ui-block-a"><a  href="http://170.224.192.51/tv.html" ><img src="images\tv.jpg" height="50px"></a>
+  </div>
+  <div class="ui-block-b"><a  href="http://170.224.192.51/lamp.html" ><img src="images\computer.jpg" height="50px"></a>
+  </div>
+  </div>
+  
+  
+  
+  </center>
+	</div>
+    <div id="ct">
+	<center><h3>Heating devices</h3>
+	<br/>
+	<div class="ui-grid-a">
+  <div class="ui-block-a"><a  href="http://170.224.192.51/heater.html" ><img src="images\heater.jpg" height="50px"></a>
+  </div>
+  <div class="ui-block-b"><a  href="http://170.224.192.51/lamp.html" ><img src="images\fireplace.jpg" height="50px"></a>
+  </div>
+  
+  </div></center>
+	</div>
+	<div id="ct1">
+	<center><h3>Cooling devices</h3>
+	<br/>
+	<div class="ui-grid-a">
+
+      <div class="ui-block-a"><a  href="http://170.224.192.51/fan.html" ><img src="images\fan.jpg" height="50px"></a>
+  </div>  
+  <div class="ui-block-b"><a  href="http://170.224.192.51/airconditioner.html" ><img src="images\airconditioner.jpg" height="50px"></a>
+  </div>
+  </div></center>
+	</div>
+	<div id="ct2">
+	<center><h3>Cleaning devices</h3>
+	<br/>
+	<div class="ui-grid-a">
+  <div class="ui-block-a"><a  href="http://170.224.192.51/vaccum.html" ><img src="images\vaccum.jpg" height="50px"></a>
+  </div>
+  <div class="ui-block-b"><a  href="http://170.224.192.51/dishwasher.html" ><img src="images\dishwasher.jpg" height="50px"></a>
+  </div>
+  
+  </div></center>
+	</div>
+	<div id="lt">
+	<center><h3>Cooking devices</h3>
+	<br/>
+	<div class="ui-grid-a">
+  <div class="ui-block-a"><a  href="http://170.224.192.51/stove.html" ><img src="images\stove.jpg" height="50px"></a>
+  </div>
+  <div class="ui-block-b"><a  href="http://170.224.192.51/lamp.html" ><img src="images\fridge.jpg" height="50px"></a>
+  </div>
+  
+  </div></center>
+	</div>
+	<div id="lt1">
+	
+	<center><h3>Lighting devices</h3>
+	<br/>
+	<div class="ui-grid-a">
+  <div class="ui-block-a"><a  href="http://170.224.192.51/lamp.html" ><img src="images\lamp.jpg" height="50px"></a>
+  </div>
+  <div class="ui-block-b"><a  href="http://170.224.192.51/tablelamp.html" ><img src="images\tablelamp.jpg" height="50px"></a>
+  </div>
+  
+  </div></center>
+	</div>
+	</div>
+	
+<div data-role="footer" data-position="fixed">		
+	<div data-role="navbar">
+		<ul>
+		    <li><a href="http://170.224.192.51/app.html">Home</a></li>
+			<li><a href="#">Device Control</a></li>
+			<li><a href="http://170.224.192.51/activity.html">Activities</a></li>
+			<li><a href="http://170.224.192.51/reccom.html">Recomendations</a></li>
+			<li><a href="http://170.224.192.51/edu.html">Education</a></li>
+		</ul>
+	</div><!-- /navbar -->
+</div><!-- /footer -->
+</div>
+  
+   
+</body>
+</html>

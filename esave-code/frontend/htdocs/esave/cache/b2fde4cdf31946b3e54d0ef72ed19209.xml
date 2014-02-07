@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<dwml version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd">
+  <head>
+    <product concise-name="dwmlByDay" operational-mode="developmental" srsName="WGS 1984">
+      <creation-date refresh-frequency='PT1H'>2013-07-31T04:41:45-06:00</creation-date>
+     <category>current observations and forecast</category>
+    </product>
+    <source>
+      <production-center>Phoenix, AZ</production-center>
+      <credit>http://www.wrh.noaa.gov/psr</credit>
+      <more-information>http://www.nws.noaa.gov/forecasts/xml/</more-information>
+    </source>
+  </head>
+  <data type="forecast">
+
+  <location>
+    <location-key>point1</location-key>
+    <point latitude="32.71" longitude="-114.62"/>
+    <area-description>3 Miles N Yuma AZ</area-description>
+    <height datum="mean sea level" height-units="feet">200</height>
+  </location>
+<moreWeatherInformation applicable-location="point1">http://forecast.weather.gov/MapClick.php?lat=32.71&amp;lon=-114.62</moreWeatherInformation>
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p6h-n1-1</layout-key>      <start-valid-time>2013-07-31T08:00:00-06:00</start-valid-time>
+      <end-valid-time>2013-08-06T18:00:00-06:00</end-valid-time>
+  </time-layout>
+
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p12h-n13-1</layout-key>
+      <start-valid-time period-name="Today">2013-07-31T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Tonight">2013-07-31T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Thursday">2013-08-01T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Thursday Night">2013-08-01T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Friday">2013-08-02T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Friday Night">2013-08-02T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Saturday">2013-08-03T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Saturday Night">2013-08-03T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Sunday">2013-08-04T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Sunday Night">2013-08-04T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Monday">2013-08-05T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Monday Night">2013-08-05T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Tuesday">2013-08-06T06:00:00-06:00</start-valid-time>
+  </time-layout>
+
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p24h-n7-1</layout-key>
+      <start-valid-time period-name="Today">2013-07-31T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Thursday">2013-08-01T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Friday">2013-08-02T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Saturday">2013-08-03T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Sunday">2013-08-04T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Monday">2013-08-05T06:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Tuesday">2013-08-06T06:00:00-06:00</start-valid-time>
+  </time-layout>
+
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p24h-n6-2</layout-key>
+      <start-valid-time period-name="Tonight">2013-07-31T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Thursday Night">2013-08-01T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Friday Night">2013-08-02T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Saturday Night">2013-08-03T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Sunday Night">2013-08-04T18:00:00-06:00</start-valid-time>
+      <start-valid-time period-name="Monday Night">2013-08-05T18:00:00-06:00</start-valid-time>
+  </time-layout>
+
+
+  <parameters applicable-location="point1">
+
+    <temperature type="maximum" units="Fahrenheit" time-layout="k-p24h-n7-1">
+      <name>Daily Maximum Temperature</name>
+        <value>105</value>
+        <value>106</value>
+        <value>103</value>
+        <value>104</value>
+        <value>105</value>
+        <value>105</value>
+        <value>105</value>
+    </temperature>
+
+    <temperature type="minimum" units="Fahrenheit" time-layout="k-p24h-n6-2">
+      <name>Daily Minimum Temperature</name>
+        <value>84</value>
+        <value>83</value>
+        <value>82</value>
+        <value>82</value>
+        <value>83</value>
+        <value>83</value>
+    </temperature>
+
+    <probability-of-precipitation  type="12 hour" units="percent" time-layout="k-p12h-n13-1">
+      <name>12 Hourly Probability of Precipitation</name>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+    </probability-of-precipitation>
+
+    <weather time-layout="k-p12h-n13-1">
+      <name>Weather Type, Coverage, Intensity</name>
+        <weather-conditions weather-summary="Sunny"/>
+        <weather-conditions weather-summary="Partly Cloudy"/>
+        <weather-conditions weather-summary="Sunny"/>
+        <weather-conditions weather-summary="Mostly Clear"/>
+        <weather-conditions weather-summary="Mostly Sunny"/>
+        <weather-conditions weather-summary="Partly Cloudy"/>
+        <weather-conditions weather-summary="Mostly Sunny"/>
+        <weather-conditions weather-summary="Partly Cloudy"/>
+        <weather-conditions weather-summary="Mostly Sunny"/>
+        <weather-conditions weather-summary="Mostly Clear"/>
+        <weather-conditions weather-summary="Sunny"/>
+        <weather-conditions weather-summary="Mostly Clear"/>
+        <weather-conditions weather-summary="Sunny"/>
+    </weather>
+
+    <conditions-icon type="forecast-NWS" time-layout="k-p12h-n13-1">
+      <name>Conditions Icon</name>        <icon-link>http://forecast.weather.gov/images/wtf/medium/few.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nsct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/few.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nfew.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/sct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nsct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/sct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nsct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/sct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nfew.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/few.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nfew.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/few.png</icon-link>
+    </conditions-icon>
+
+    <hazards time-layout="k-p6h-n1-1">
+      <name>Watches, Warnings, and Advisories</name>
+      <hazard-conditions>
+        <hazard headline="Hazardous Weather Outlook">
+          <hazardTextURL>http://forecast.weather.gov/showsigwx.php?warnzone=AZZ025&amp;warncounty=AZC027&amp;firewxzone=AZZ131&amp;local_place1=3+Miles+N+Yuma+AZ&amp;product1=Hazardous+Weather+Outlook</hazardTextURL>
+        </hazard>
+      </hazard-conditions>
+    </hazards>
+
+    <wordedForecast time-layout="k-p12h-n13-1" dataSource="psrNetcdf" wordGenerator="markMitchell">
+      <name>Text Forecast</name>
+        <text>Sunny, with a high near 105. Light and variable wind becoming south 5 to 10 mph in the morning. </text>
+        <text>Partly cloudy, with a low around 84. South southwest wind 5 to 9 mph becoming calm  after midnight. </text>
+        <text>Sunny, with a high near 106. Light south southeast wind becoming south 8 to 13 mph in the morning. </text>
+        <text>Mostly clear, with a low around 83. South wind 8 to 13 mph becoming light  after midnight. </text>
+        <text>Mostly sunny, with a high near 103. South wind 3 to 8 mph. </text>
+        <text>Partly cloudy, with a low around 82.</text>
+        <text>Mostly sunny, with a high near 104.</text>
+        <text>Partly cloudy, with a low around 82.</text>
+        <text>Mostly sunny, with a high near 105.</text>
+        <text>Mostly clear, with a low around 83.</text>
+        <text>Sunny, with a high near 105.</text>
+        <text>Mostly clear, with a low around 83.</text>
+        <text>Sunny, with a high near 105.</text>
+    </wordedForecast>
+
+</parameters>
+</data>
+<data type="current observations">
+	<location>
+		<location-key>point1</location-key>
+		<point latitude="32.65944" longitude="-114.59306"/>
+		<area-description>Yuma, Marine Corps Air Station, AZ</area-description>
+		<height datum="mean sea level" height-units="feet">207</height>
+	</location>
+	<moreWeatherInformation applicable-location="point1">http://www.wrh.noaa.gov/total_forecast/other_obs.php?wfo=psr&amp;zone=AZZ025</moreWeatherInformation>	<time-layout time-coordinate="local">	<layout-key>k-p1h-n1-1</layout-key>	<start-valid-time period-name="current">2013-07-31T06:57:00</start-valid-time>	</time-layout>	<parameters applicable-location="point1">	<temperature type="apparent" units="Fahrenheit" time-layout="k-p1h-n1-1">	<value>86</value>	</temperature>	<temperature type="dew point" units="Fahrenheit" time-layout="k-p1h-n1-1">	<value>55</value>	</temperature>	<humidity type="relative" time-layout="k-p1h-n1-1">	<value>35</value>	</humidity>	<weather time-layout="k-p1h-n1-1">	<name>Weather Type, Coverage, Intensity</name>	<weather-conditions weather-summary="Mostly Cloudy"/>	<weather-conditions>	<value>	<visibility units="statute miles">10.00</visibility>	</value>	</weather-conditions>	</weather>	<conditions-icon type="forecast-NWS" time-layout="k-p1h-n1-1">	<name>Conditions Icon</name>	<icon-link>http://forecast.weather.gov/images/wtf/medium/bkn.png</icon-link>	</conditions-icon>	<direction type="wind" units="degrees true" time-layout="k-p1h-n1-1">	<value>0</value>	</direction>	<wind-speed type="gust" units="knots" time-layout="k-p1h-n1-1">	<value>NA</value>	</wind-speed>	<wind-speed type="sustained" units="knots" time-layout="k-p1h-n1-1">	<value>0</value>	</wind-speed>		<pressure type="barometer" units="inches of mercury" time-layout="k-p1h-n1-1">			<value>29.92</value>		</pressure>	</parameters></data></dwml>

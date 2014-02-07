@@ -1,0 +1,127 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.css" />
+<script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+      <script src="http://code.jquery.com/mobile/1.0a4/jquery.mobile-1.0a4.min.js"></script>
+	  <style>
+	  #page
+	  {
+	  background: #fff;
+	  
+	  }
+	  
+	  #con
+	  {
+	  
+width: 97%;
+padding: 20px;
+float:left;
+padding-top: 20px;
+margin-left: auto;
+margin-right: auto;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+  
+	  
+	  }
+	  </style>
+		
+</head>
+<body>
+<div data-role="page" id="page" tabindex="0">
+   <div data-role="header">
+   <div id="univheader">
+   <div id="logo"><a href="http://www.umkc.edu"><img src="images\logo.png" height="32px"></a></div>
+   <div id="homeButton"><a href="app.html" rel="external" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right" data-theme="b">Home</a></div>
+   </div> 
+   </div>
+  
+       <div id="con" data-role="content"> 
+      <center><img src="E-SaveLogo.png" style="height:110px;"/>
+	  
+	<br/>
+	<br/>
+	<br/>
+	<a href="#notification" data-transition="fade" data-rel="popup"> 
+   </a>
+<form id="callAjaxForm" action="profile_submit.php" method="POST" data-ajax="false">
+<div data-role="fieldcontain" class="ui-hide-label">
+	
+	<input type="text" name="Hname" id="name" value="" placeholder="House Name"/>
+</div>
+<select id="number" name="monitored">
+        <option value="select-value" selected="selected">Sensor Supervised</option>  
+        <option value="yes">Yes</option>
+        <option value="no">No</option>  
+</select>
+<select id="temp" name="temp">
+        <option value="" selected="selected">Temperature Setting</option>  
+        <option value="Hot">Hot</option>
+        <option value="Hot-Humid">Hot-Humid</option>
+		<option value="Hot-Humid">Cold</option>
+		<option value="Hot-Humid">Very-Cold</option>
+		
+</select>
+<div data-role="fieldcontain" class="ui-hide-label">
+		<input type="text" name="yeare" id="yeare" value="" placeholder="Yearly Energy Consumption"/>
+</div>
+<select id="htype" name="htype">
+        <option value="" selected="selected">House Type</option>  
+        <option value="single">Single Room</option>
+        <option value="studio">Studio Apartment</option>
+		<option value="1bed">1 Bedroom Hall Kitchen Apartment</option>
+		<option value="2bed">2 Bedroom Hall Kitchen Apartment</option>
+		<option value="3bed">3 Bedroom Hall Kitchen Apartment</option>
+		<option value="4bed">More then 3 Bedroom Hall Kitchen Apartment</option>
+		<option value="1house">1 Bedroom Hall Kitchen House without Garage</option>
+		<option value="2house">2 Bedroom Hall Kitchen House without Garage</option>
+		<option value="3house">2 Bedroom Hall Kitchen House without Garage</option>
+</select>
+<select id="multi" name="multi">
+        <option value="" selected="selected">Multi Floor</option>  
+        <option value="yes">Yes</option>
+        <option value="no">No</option>  
+</select>
+<div data-role="fieldcontain" class="ui-hide-label">
+	
+	<input type="number" name="floors" id="floors" value="" placeholder="Number of Floors"/>
+</div>
+<div data-role="fieldcontain">
+ 	<fieldset data-role="controlgroup" style="width:60%;">
+		
+		<input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" />
+		<label for="checkbox-1">Heater</label>
+		<input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" />
+		<label for="checkbox-2">Air COnditioner</label>
+		<input type="checkbox" name="checkbox-3" id="checkbox-3" class="custom" />
+		<label for="checkbox-3">Refridgerator</label>
+		<input type="checkbox" name="checkbox-4" id="checkbox-4" class="custom" />
+		<label for="checkbox-4">Washer & Dryer</label>
+		<input type="checkbox" name="checkbox-5" id="checkbox-5" class="custom" />
+		<label for="checkbox-5">Microwave</label>
+		<input type="checkbox" name="checkbox-6" id="checkbox-6" class="custom" />
+		<label for="checkbox-6">Dish washer</label>
+		<input type="checkbox" name="checkbox-7" id="checkbox-7" class="custom" />
+		<label for="checkbox-7">Television</label>
+		<input type="checkbox" name="checkbox-8" id="checkbox-8" class="custom" />
+		<label for="checkbox-8">Computer</label>
+    
+	</fieldset>
+</div>
+<input type="submit" value="Submit" />
+</form>
+</div>
+<div data-role="footer" data-position="fixed">		
+	<div data-role="navbar">
+		<ul>
+		    <li><a href="http://170.225.98.69/app.html">Home</a></li>
+			<li><a href="http://170.225.98.69/control.html">Device Control</a></li>
+			<li><a href="http://170.225.98.69/activity.html">Activities</a></li>
+			<li><a href="http://170.225.98.69/reccom.html">Recomendations</a></li>
+			<li><a href="http://170.225.98.69/edu.html">Education</a></li>
+		</ul>
+	</div><!-- /navbar -->
+</div><!-- /footer -->
+</div>
+</body>
+</html>
